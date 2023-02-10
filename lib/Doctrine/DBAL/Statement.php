@@ -232,13 +232,13 @@ class Statement implements \IteratorAggregate, DriverStatement
      */
     public function setFetchMode(int $mode, mixed ...$args)
     {
-        if ($args[1] === null) {
+        if ($args[0] === null) {
             return $this->stmt->setFetchMode($mode);
-        } elseif ($args[2] === null) {
-            return $this->stmt->setFetchMode($mode, $args[1]);
+        } elseif ($args[1] === null) {
+            return $this->stmt->setFetchMode($mode, $args[0]);
         }
 
-        return $this->stmt->setFetchMode($mode, $args[1], $args[2]);
+        return $this->stmt->setFetchMode($mode, $args[0], $args[1]);
     }
 
     /**

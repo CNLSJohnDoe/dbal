@@ -48,11 +48,11 @@ class PDOStatement extends \PDOStatement implements Statement
                 return parent::setFetchMode($mode);
             }
 
-            if ($args[2] === null) {
+            if ($args[1] === null) {
                 return parent::setFetchMode($mode, $args[1]);
             }
 
-            return parent::setFetchMode($mode, $args[1], $args[2]);
+            return parent::setFetchMode($mode, $args[0], $args[1]);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }

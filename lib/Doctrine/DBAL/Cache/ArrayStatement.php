@@ -76,7 +76,7 @@ class ArrayStatement implements \IteratorAggregate, ResultStatement
      */
     public function setFetchMode(int $mode, mixed ...$args)
     {
-        if ($args[1] !== null || $args[2] !== null) {
+        if ($args[0] !== null || $args[1] !== null) {
             throw new \InvalidArgumentException("Caching layer does not support 2nd/3rd argument to setFetchMode()");
         }
 
