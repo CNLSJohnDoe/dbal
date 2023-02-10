@@ -70,10 +70,8 @@ interface ResultStatement extends \Traversable
     /**
      * Returns an array containing all of the result set rows.
      *
-     * @param integer|null $fetchMode Controls how the next row will be returned to the caller.
-     *                                The value must be one of the PDO::FETCH_* constants,
-     *                                defaulting to PDO::FETCH_BOTH.
-     *
+     * @param int $mode
+     * @param mixed ...$args
      * @return array
      *
      * @see PDO::FETCH_* constants.

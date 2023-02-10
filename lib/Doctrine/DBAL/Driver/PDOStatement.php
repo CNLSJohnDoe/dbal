@@ -138,19 +138,19 @@ class PDOStatement extends \PDOStatement implements Statement
     public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
     {
         try {
-            if ($fetchMode === null && $fetchArgument === null && $ctorArgs === null) {
+            if ($mode === null && $args[0] === null && $args[1] === null) {
                 return parent::fetchAll();
             }
 
-            if ($fetchArgument === null && $ctorArgs === null) {
-                return parent::fetchAll($fetchMode);
+            if ($args[0] === null && $args[1] === null) {
+                return parent::fetchAll($mode);
             }
 
-            if ($ctorArgs === null) {
-                return parent::fetchAll($fetchMode, $fetchArgument);
+            if ($args[1] === null) {
+                return parent::fetchAll($mode, $args[0]);
             }
 
-            return parent::fetchAll($fetchMode, $fetchArgument, $ctorArgs);
+            return parent::fetchAll($mode, $args[0], $args[1]);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }

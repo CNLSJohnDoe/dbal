@@ -122,10 +122,10 @@ class ArrayStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll($fetchMode = null)
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
     {
         $rows = array();
-        while ($row = $this->fetch($fetchMode)) {
+        while ($row = $this->fetch($mode)) {
             $rows[] = $row;
         }
 
