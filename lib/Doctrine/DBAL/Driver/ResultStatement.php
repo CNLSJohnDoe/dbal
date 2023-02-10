@@ -80,7 +80,7 @@ interface ResultStatement extends \Traversable
      *
      * @see PDO::FETCH_* constants.
      */
-    public function fetchAll($fetchMode = null);
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args);
 
     /**
      * Returns a single column from the next row of a result set or FALSE if there are no more rows.
