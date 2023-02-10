@@ -230,15 +230,15 @@ class Statement implements \IteratorAggregate, DriverStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
-        if ($arg2 === null) {
-            return $this->stmt->setFetchMode($fetchMode);
-        } elseif ($arg3 === null) {
-            return $this->stmt->setFetchMode($fetchMode, $arg2);
+        if ($args[0] === null) {
+            return $this->stmt->setFetchMode($mode);
+        } elseif ($args[1] === null) {
+            return $this->stmt->setFetchMode($mode, $args[0]);
         }
 
-        return $this->stmt->setFetchMode($fetchMode, $arg2, $arg3);
+        return $this->stmt->setFetchMode($mode, $args[0], $args[1]);
     }
 
     /**
@@ -267,18 +267,17 @@ class Statement implements \IteratorAggregate, DriverStatement
     /**
      * Returns an array containing all of the result set rows.
      *
-     * @param integer|null $fetchMode
-     * @param mixed        $fetchArgument
-     *
+     * @param int $mode
+     * @param mixed ...$args
      * @return array An array containing all of the remaining rows in the result set.
      */
-    public function fetchAll($fetchMode = null, $fetchArgument = 0)
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
     {
-        if ($fetchArgument !== 0) {
-            return $this->stmt->fetchAll($fetchMode, $fetchArgument);
+        if ($args[0] !== 0) {
+            return $this->stmt->fetchAll($mode, $args[0]);
         }
 
-        return $this->stmt->fetchAll($fetchMode);
+        return $this->stmt->fetchAll($mode);
     }
 
     /**

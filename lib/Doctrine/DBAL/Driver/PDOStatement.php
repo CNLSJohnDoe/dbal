@@ -37,22 +37,22 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
         // This thin wrapper is necessary to shield against the weird signature
         // of PDOStatement::setFetchMode(): even if the second and third
         // parameters are optional, PHP will not let us remove it from this
         // declaration.
         try {
-            if ($arg2 === null && $arg3 === null) {
-                return parent::setFetchMode($fetchMode);
+            if ($args[0] === null && $args[1] === null) {
+                return parent::setFetchMode($mode);
             }
 
-            if ($arg3 === null) {
-                return parent::setFetchMode($fetchMode, $arg2);
+            if ($args[1] === null) {
+                return parent::setFetchMode($mode, $args[1]);
             }
 
-            return parent::setFetchMode($fetchMode, $arg2, $arg3);
+            return parent::setFetchMode($mode, $args[0], $args[1]);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }
@@ -135,22 +135,22 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll($fetchMode = null, $fetchArgument = null, $ctorArgs = null)
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
     {
         try {
-            if ($fetchMode === null && $fetchArgument === null && $ctorArgs === null) {
+            if ($mode === null && $args[0] === null && $args[1] === null) {
                 return parent::fetchAll();
             }
 
-            if ($fetchArgument === null && $ctorArgs === null) {
-                return parent::fetchAll($fetchMode);
+            if ($args[0] === null && $args[1] === null) {
+                return parent::fetchAll($mode);
             }
 
-            if ($ctorArgs === null) {
-                return parent::fetchAll($fetchMode, $fetchArgument);
+            if ($args[1] === null) {
+                return parent::fetchAll($mode, $args[0]);
             }
 
-            return parent::fetchAll($fetchMode, $fetchArgument, $ctorArgs);
+            return parent::fetchAll($mode, $args[0], $args[1]);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }

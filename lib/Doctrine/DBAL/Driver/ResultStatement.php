@@ -45,15 +45,13 @@ interface ResultStatement extends \Traversable
     /**
      * Sets the fetch mode to use while iterating this statement.
      *
-     * @param integer $fetchMode The fetch mode must be one of the PDO::FETCH_* constants.
-     * @param mixed   $arg2
-     * @param mixed   $arg3
-     *
+     * @param int $mode
+     * @param mixed ...$args
      * @return boolean
      *
      * @see PDO::FETCH_* constants.
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null);
+    public function setFetchMode(int $mode, mixed ...$args);
 
     /**
      * Returns the next row of a result set.
@@ -72,15 +70,13 @@ interface ResultStatement extends \Traversable
     /**
      * Returns an array containing all of the result set rows.
      *
-     * @param integer|null $fetchMode Controls how the next row will be returned to the caller.
-     *                                The value must be one of the PDO::FETCH_* constants,
-     *                                defaulting to PDO::FETCH_BOTH.
-     *
+     * @param int $mode
+     * @param mixed ...$args
      * @return array
      *
      * @see PDO::FETCH_* constants.
      */
-    public function fetchAll($fetchMode = null);
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args);
 
     /**
      * Returns a single column from the next row of a result set or FALSE if there are no more rows.
