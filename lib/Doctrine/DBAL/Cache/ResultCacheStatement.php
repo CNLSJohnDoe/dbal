@@ -127,9 +127,9 @@ class ResultCacheStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
-        $this->defaultFetchMode = $fetchMode;
+        $this->defaultFetchMode = $mode;
 
         return true;
     }

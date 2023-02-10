@@ -74,13 +74,13 @@ class ArrayStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
-        if ($arg2 !== null || $arg3 !== null) {
+        if ($args[1] !== null || $args[2] !== null) {
             throw new \InvalidArgumentException("Caching layer does not support 2nd/3rd argument to setFetchMode()");
         }
 
-        $this->defaultFetchMode = $fetchMode;
+        $this->defaultFetchMode = $mode;
 
         return true;
     }

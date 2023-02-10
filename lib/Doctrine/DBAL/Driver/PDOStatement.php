@@ -37,22 +37,22 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
         // This thin wrapper is necessary to shield against the weird signature
         // of PDOStatement::setFetchMode(): even if the second and third
         // parameters are optional, PHP will not let us remove it from this
         // declaration.
         try {
-            if ($arg2 === null && $arg3 === null) {
-                return parent::setFetchMode($fetchMode);
+            if ($args[0] === null && $args[1] === null) {
+                return parent::setFetchMode($mode);
             }
 
-            if ($arg3 === null) {
-                return parent::setFetchMode($fetchMode, $arg2);
+            if ($args[2] === null) {
+                return parent::setFetchMode($mode, $args[1]);
             }
 
-            return parent::setFetchMode($fetchMode, $arg2, $arg3);
+            return parent::setFetchMode($mode, $args[1], $args[2]);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }

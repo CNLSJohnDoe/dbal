@@ -45,15 +45,13 @@ interface ResultStatement extends \Traversable
     /**
      * Sets the fetch mode to use while iterating this statement.
      *
-     * @param integer $fetchMode The fetch mode must be one of the PDO::FETCH_* constants.
-     * @param mixed   $arg2
-     * @param mixed   $arg3
-     *
+     * @param int $mode
+     * @param mixed ...$args
      * @return boolean
      *
      * @see PDO::FETCH_* constants.
      */
-    public function setFetchMode($fetchMode, $arg2 = null, $arg3 = null);
+    public function setFetchMode(int $mode, mixed ...$args);
 
     /**
      * Returns the next row of a result set.
