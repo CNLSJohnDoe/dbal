@@ -135,7 +135,7 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
+    public function fetchAll(int $mode = \PDO::FETCH_DEFAULT, mixed ...$args)
     {
         try {
             if ($mode === null && $args[0] === null && $args[1] === null) {
