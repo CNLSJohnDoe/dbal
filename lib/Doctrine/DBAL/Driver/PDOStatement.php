@@ -43,6 +43,9 @@ class PDOStatement extends \PDOStatement implements Statement
         // of PDOStatement::setFetchMode(): even if the second and third
         // parameters are optional, PHP will not let us remove it from this
         // declaration.
+        $args[0] ??= null;
+        $args[1] ??= null;
+
         try {
             if ($args[0] === null && $args[1] === null) {
                 return parent::setFetchMode($mode);
@@ -137,6 +140,9 @@ class PDOStatement extends \PDOStatement implements Statement
      */
     public function fetchAll(int $mode = \PDO::FETCH_DEFAULT, mixed ...$args)
     {
+        $args[0] ??= null;
+        $args[1] ??= null;
+
         try {
             if ($mode === null && $args[0] === null && $args[1] === null) {
                 return parent::fetchAll();
