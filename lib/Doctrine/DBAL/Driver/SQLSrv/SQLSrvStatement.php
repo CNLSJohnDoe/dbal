@@ -129,7 +129,7 @@ class SQLSrvStatement implements IteratorAggregate, Statement
         $this->conn = $conn;
         $this->sql = $sql;
 
-        if (stripos($sql, 'INSERT INTO ') === 0) {
+        if (stripos((string) $sql, 'INSERT INTO ') === 0) {
             $this->sql .= self::LAST_INSERT_ID_SQL;
             $this->lastInsertId = $lastInsertId;
         }

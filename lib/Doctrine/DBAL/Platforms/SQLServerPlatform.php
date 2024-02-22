@@ -1257,7 +1257,7 @@ class SQLServerPlatform extends AbstractPlatform
         $offset = 0;
 
         while ($count-- > 0) {
-            $orderByPos = stripos($query, ' ORDER BY', $offset);
+            $orderByPos = stripos((string) $query, ' ORDER BY', $offset);
             if ($orderByPos === false) {
                 break;
             }

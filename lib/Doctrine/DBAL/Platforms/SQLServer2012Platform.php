@@ -126,7 +126,7 @@ class SQLServer2012Platform extends SQLServer2008Platform
         if ($orderByPos === false
             || substr_count($query, "(", $orderByPos) - substr_count($query, ")", $orderByPos)
         ) {
-            if (stripos($query, 'SELECT DISTINCT') === 0) {
+            if (stripos((string) $query, 'SELECT DISTINCT') === 0) {
                 // SQL Server won't let us order by a non-selected column in a DISTINCT query,
                 // so we have to do this madness. This says, order by the first column in the
                 // result. SQL Server's docs say that a nonordered query's result order is non-
