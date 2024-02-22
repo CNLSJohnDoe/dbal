@@ -103,7 +103,7 @@ class CompositeExpression implements \Countable
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return count($this->parts);
     }
