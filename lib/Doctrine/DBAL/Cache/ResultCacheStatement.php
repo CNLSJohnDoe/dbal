@@ -127,7 +127,7 @@ class ResultCacheStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode(int $mode, mixed ...$args)
+    public function setFetchMode($mode, $className=null, ...$args)
     {
         $this->defaultFetchMode = $mode;
 
@@ -179,7 +179,7 @@ class ResultCacheStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, ...$args)
     {
         $rows = array();
         while ($row = $this->fetch($mode)) {

@@ -74,9 +74,9 @@ class ArrayStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode(int $mode, mixed ...$args)
+    public function setFetchMode($mode, $className=null, ...$args)
     {
-        if ($args[0] !== null || $args[1] !== null) {
+        if (!empty($className) || !empty($args[0])) {
             throw new \InvalidArgumentException("Caching layer does not support 2nd/3rd argument to setFetchMode()");
         }
 
@@ -122,7 +122,7 @@ class ArrayStatement implements \IteratorAggregate, ResultStatement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, ...$args)
     {
         $rows = array();
         while ($row = $this->fetch($mode)) {

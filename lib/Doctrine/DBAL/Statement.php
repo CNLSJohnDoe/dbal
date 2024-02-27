@@ -230,15 +230,15 @@ class Statement implements \IteratorAggregate, DriverStatement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode(int $mode, mixed ...$args)
+    public function setFetchMode($mode, $className=null, ...$args)
     {
-        if ($args[0] === null) {
+        if ($className === null) {
             return $this->stmt->setFetchMode($mode);
-        } elseif ($args[1] === null) {
-            return $this->stmt->setFetchMode($mode, $args[0]);
+        } elseif ($args[0] === null) {
+            return $this->stmt->setFetchMode($mode, $className);
         }
 
-        return $this->stmt->setFetchMode($mode, $args[0], $args[1]);
+        return $this->stmt->setFetchMode($mode, $className, $args[0]);
     }
 
     /**
@@ -271,7 +271,7 @@ class Statement implements \IteratorAggregate, DriverStatement
      * @param mixed ...$args
      * @return array An array containing all of the remaining rows in the result set.
      */
-    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, ...$args)
     {
         if ($args[0] !== 0) {
             return $this->stmt->fetchAll($mode, $args[0]);

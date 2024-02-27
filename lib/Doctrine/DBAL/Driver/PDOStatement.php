@@ -37,14 +37,14 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function setFetchMode(int $mode, mixed ...$args)
+    public function setFetchMode($mode, $className=null,  ...$args)
     {
         // This thin wrapper is necessary to shield against the weird signature
         // of PDOStatement::setFetchMode(): even if the second and third
         // parameters are optional, PHP will not let us remove it from this
         // declaration.
-        $args[0] ??= null;
-        $args[1] ??= null;
+        $args[0] = isset($args[0]) ? $args[0] : null;
+        $args[1] = isset($args[1]) ? $args[1] : null;
 
         try {
             if ($args[0] === null && $args[1] === null) {
@@ -138,10 +138,10 @@ class PDOStatement extends \PDOStatement implements Statement
     /**
      * {@inheritdoc}
      */
-    public function fetchAll(int $mode = \PDO::FETCH_DEFAULT, mixed ...$args)
+    public function fetchAll($mode = \PDO::FETCH_DEFAULT, ...$args)
     {
-        $args[0] ??= null;
-        $args[1] ??= null;
+        $args[0] = isset($args[0]) ? $args[0] : null;
+        $args[1] = isset($args[1]) ? $args[1] : null;
 
         try {
             if ($mode === null && $args[0] === null && $args[1] === null) {

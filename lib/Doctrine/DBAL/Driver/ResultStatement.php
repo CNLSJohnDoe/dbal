@@ -51,7 +51,7 @@ interface ResultStatement extends \Traversable
      *
      * @see PDO::FETCH_* constants.
      */
-    public function setFetchMode(int $mode, mixed ...$args);
+    public function setFetchMode($mode, $className=null, ...$args);
 
     /**
      * Returns the next row of a result set.
@@ -76,7 +76,7 @@ interface ResultStatement extends \Traversable
      *
      * @see PDO::FETCH_* constants.
      */
-    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args);
+    public function fetchAll($mode = PDO::FETCH_DEFAULT, ...$args);
 
     /**
      * Returns a single column from the next row of a result set or FALSE if there are no more rows.
